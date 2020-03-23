@@ -4,6 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $.getJSON("http://localhost:9000/.netlify/functions/api/products/SUMMONING_EYE", function(data){
+            console.log(data);
+        });
+    </script>
 </head>
 <body>
     
