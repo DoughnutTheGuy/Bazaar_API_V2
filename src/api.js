@@ -10,12 +10,7 @@ var API_KEY = "eca6145a-32b5-43f1-99d0-6adb7bcfc690";
 
 var url = "https://api.hypixel.net/skyblock/bazaar/product?key=" + API_KEY +"&productId=";
 
-app.use(function(req,res,next){
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', "GET,PUT,POST,DELETE");
-    res.header('Access-Control-Allow-Headers', "Content-Type");
-    next();
-});
+app.use(cors())
 
 router.get("/products/:product_id", (req, res) => {
     getJSON(url+req.params.product_id, function(error, response){
@@ -24,5 +19,13 @@ router.get("/products/:product_id", (req, res) => {
 });
 
 app.use('/.netlify/functions/api', router);
+
+// app.use(function (req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500/');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
 module.exports.handler = serverless(app);
